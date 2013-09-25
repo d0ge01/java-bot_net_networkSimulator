@@ -1,7 +1,7 @@
 package it.d0ge01.botnet.net;
 
 import it.d0ge01.botnet.*;
-import it.d0ge01.botnet.util.Util;
+import it.d0ge01.botnet.util.*;
 
 public class Host extends NetNode{
 	// 0.0 - 1.0 , where 1 is like always infected, 0 never :/
@@ -25,6 +25,10 @@ public class Host extends NetNode{
 	public static void tryInfection() {
 		if ( Util.randomizeBoolean(infectionRate))
 			infected = true;
+	}
+	
+	public static void infectedRuntime() {
+		Malware.main(null);
 	}
 	
 }
