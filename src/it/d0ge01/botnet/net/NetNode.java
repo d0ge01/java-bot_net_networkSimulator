@@ -1,6 +1,6 @@
 package it.d0ge01.botnet.net;
 
-public abstract class NetNode {
+public class NetNode {
 
 	private String hostname;
 	private String ip;

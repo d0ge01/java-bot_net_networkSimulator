@@ -10,5 +10,13 @@ public class Util {
 	    return ((double) Math.log(d)/Math.log(10.0));
 	}
 	
-	
+	public static boolean randomizeBoolean(double ir) {
+		if ( ((int) (Math.random() * 10.0 )) % 2 == 0 )
+			if ( Math.random() < ir)
+				return true;
+		else
+			return false;
+		
+		return false;
+	}
 }
