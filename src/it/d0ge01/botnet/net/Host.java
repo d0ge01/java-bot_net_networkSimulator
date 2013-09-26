@@ -30,5 +30,4 @@ public class Host extends NetNode{
 	public static void infectedRuntime() {
 		Malware.main(null);
 	}
-	
 }

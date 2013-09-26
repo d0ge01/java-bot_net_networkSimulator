@@ -2,7 +2,7 @@ package it.d0ge01.botnet.net;
 
 import it.d0ge01.botnet.Main;
 
-public class NetPool {
+public class NetPool extends Thread {
 	private int sizeNet = 100;
 	private NetNode[] field = new NetNode[sizeNet];
 	
@@ -25,4 +25,14 @@ public class NetPool {
 				System.out.println("DONE");
 		}
 	}
+	
+	public NetNode host(int i) {
+		return field[i+1];
+	}
+	
+	public void communication(NetNode x, NetNode y, String txt ) {
+		String buff = txt;
+		y.recv(txt, x);
+	}
+	
 }

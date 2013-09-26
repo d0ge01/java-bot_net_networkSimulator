@@ -13,6 +13,10 @@ public class Main {
 		
 		field.startNetPool();
 		
+		NetNode h1 = field.host(40);
+		NetNode h2 = field.host(55);
+		
+		h1.send(field, h2, "CIAO PIPPO");
 	}
 	
 	public static boolean debug() {

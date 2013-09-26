@@ -1,5 +1,7 @@
 package it.d0ge01.botnet.net;
 
+import it.d0ge01.botnet.Main;
+
 public class NetNode {
 
 	protected String hostname;
@@ -37,5 +39,16 @@ public class NetNode {
 	
 	public String ip() {
 		return ip;
+	}
+	
+	public void send(NetPool field, NetNode x, String txt) {
+		if ( Main.debug())
+			System.out.println("Sending to " + x.hostname + " txt: " + txt);
+		field.communication(this, x, txt);
+	}
+	
+	public void recv(String txt, NetNode from) {
+		if ( Main.debug())
+			System.out.println("recv data from " + from.hostname + " with txt: "  + txt );
 	}
 }
