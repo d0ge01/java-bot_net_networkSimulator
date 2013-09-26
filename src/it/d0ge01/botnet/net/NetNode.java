@@ -48,13 +48,13 @@ public class NetNode {
 	
 	public void send(NetPool field, NetNode x, String txt) {
 		if ( Main.debug())
-			System.out.println("Sending to " + x.hostname + " txt: " + txt);
+			System.out.println("[DEBUG] " + this.hostname + " Sending to " + x.hostname + " txt: " + txt);
 		field.communication(this, x, txt);
 	}
 	
 	public void recv(String txt, NetNode from) {
 		if ( Main.debug())
-			System.out.println("recv data from " + from.hostname + " with txt: "  + txt );
+			System.out.println("[DEBUG] " + this.hostname + " recv data from " + from.hostname + " with txt: "  + txt );
 	}
 	
 	public static double infectionRate() {
