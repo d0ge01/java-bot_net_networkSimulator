@@ -5,6 +5,7 @@ import java.io.IOException;
 import it.d0ge01.botnet.net.*;
 import it.d0ge01.botnet.util.*;
 import it.d0ge01.botnet.*;
+
 public class Main {
 	final static boolean DEBUG = true;
 	static NetPool field;
@@ -12,7 +13,6 @@ public class Main {
 	public static void main(String[] args) throws IOException {
 		// TODO Auto-generated method stub
 		field = new NetPool(100);
-		Thread r = new Thread(field);
 		char sc;
 		
 		field.startNetPool();
@@ -23,9 +23,9 @@ public class Main {
 		
 		if ( sc == 'p') {
 			Malware virus = new Malware("botnet test", 0.4, field, field.host(0), field.host(4));
-			field.host(0);
+			NetNode infected = field.host(0);
 			// allow virus control infected target
-			NetNode.infectedRuntime(virus);
+			infected.infectedRuntime(virus);
 		}
 		
 	}

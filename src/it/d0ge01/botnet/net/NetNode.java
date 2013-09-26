@@ -70,7 +70,7 @@ public class NetNode {
 			infected = true;
 	}
 	
-	public static void infectedRuntime(Runnable t) {
+	public void infectedRuntime(Runnable t) {
 		t.run();
 	}
 	
