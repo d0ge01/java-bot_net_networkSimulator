@@ -22,7 +22,7 @@ public class Main {
 			console();
 		
 		if ( sc == 'p') {
-			Malware virus = new Malware("botnet test", 0.4, field, field.host(0), field.host(4));
+			Malware virus = new Malware("botnet test", 0.4, field, field.host(0));
 			NetNode infected = field.host(0);
 			// allow virus control infected target
 			infected.infectedRuntime(virus);

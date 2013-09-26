@@ -8,13 +8,15 @@ public class NetNode {
 	protected String hostname;
 	private String ip;
 	private long pingTimeMsec;
+	private Runnable t;
 	
 	// 0.0 - 1.0 , where 1 is like always infected, 0 never :/
 	private static double infectionRate = 0.5;
 	// Statement about infection
 	private static boolean infected = false;
-	
+	// alive?
 	private boolean alive;
+
 	
 	public NetNode(String host, String address ) {
 		this.hostname = host;
@@ -52,9 +54,10 @@ public class NetNode {
 		field.communication(this, x, txt);
 	}
 	
-	public void recv(String txt, NetNode from) {
+	public void recv(NetPool field, String txt, NetNode from) {
 		if ( Main.debug())
 			System.out.println("[DEBUG] " + this.hostname + " recv data from " + from.hostname + " with txt: "  + txt );
+			
 	}
 	
 	public static double infectionRate() {
@@ -71,7 +74,11 @@ public class NetNode {
 	}
 	
 	public void infectedRuntime(Runnable t) {
-		t.run();
+		this.t= t;
+	}
+	
+	public void activate() {
+		this.t.run();
 	}
 	
 }
