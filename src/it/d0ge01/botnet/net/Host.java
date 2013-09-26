@@ -9,8 +9,8 @@ public class Host extends NetNode{
 	// Statement about infection
 	private static boolean infected = false;
 	
-	public Host(String host, String address, boolean al) {
-		super(host, address, al);
+	public Host(String host, String address) {
+		super(host, address);
 		// TODO Auto-generated constructor stub
 	}
 	
