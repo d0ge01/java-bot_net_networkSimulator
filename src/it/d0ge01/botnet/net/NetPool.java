@@ -19,7 +19,7 @@ public class NetPool extends Thread {
 			if ( Main.debug())
 				System.out.print("Creating node ( hostname" + i + ", 192.168.1." + i + " ) ....   "); 
 			
-			field[i] = new Host("hostname" + i , "192.168.1." + i);
+			field[i] = new NetNode("hostname" + i , "192.168.1." + i);
 			
 			if ( Main.debug())
 				System.out.println("DONE");

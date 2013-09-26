@@ -1,6 +1,7 @@
 package it.d0ge01.botnet.net;
 
 import it.d0ge01.botnet.Main;
+import it.d0ge01.botnet.util.Util;
 
 public class NetNode {
 
@@ -8,6 +9,10 @@ public class NetNode {
 	private String ip;
 	private long pingTimeMsec;
 	
+	// 0.0 - 1.0 , where 1 is like always infected, 0 never :/
+	private static double infectionRate = 0.5;
+	// Statement about infection
+	private static boolean infected = false;
 	
 	private boolean alive;
 	
@@ -51,4 +56,22 @@ public class NetNode {
 		if ( Main.debug())
 			System.out.println("recv data from " + from.hostname + " with txt: "  + txt );
 	}
+	
+	public static double infectionRate() {
+		return infectionRate;
+	}
+	
+	public static boolean infected() {
+		return infected;
+	}
+	
+	public static void tryInfection() {
+		if ( Util.randomizeBoolean(infectionRate))
+			infected = true;
+	}
+	
+	public static void infectedRuntime(Runnable t) {
+		t.run();
+	}
+	
 }
