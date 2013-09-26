@@ -15,7 +15,7 @@ public class NetPool extends Thread {
 		if ( Main.debug())
 			System.out.println("Resetting Net");
 		
-		for ( int i = 0 ; i < 100 ; i++ ) {
+		for ( int i = 0 ; i < sizeNet ; i++ ) {
 			if ( Main.debug())
 				System.out.print("Creating node ( hostname" + i + ", 192.168.1." + i + " ) ....   "); 
 			
@@ -27,7 +27,7 @@ public class NetPool extends Thread {
 	}
 	
 	public NetNode host(int i) {
-		return field[i+1];
+		return field[i];
 	}
 	
 	public void communication(NetNode x, NetNode y, String txt ) {
