@@ -12,6 +12,7 @@ public class Main {
 	public static void main(String[] args) throws IOException {
 		// TODO Auto-generated method stub
 		field = new NetPool(100);
+		Thread r = new Thread(field);
 		field.startNetPool();
 		
 		console();
