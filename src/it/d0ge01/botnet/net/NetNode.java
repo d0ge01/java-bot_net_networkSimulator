@@ -1,6 +1,7 @@
 package it.d0ge01.botnet.net;
 
 import it.d0ge01.botnet.Main;
+import it.d0ge01.botnet.Malware;
 import it.d0ge01.botnet.util.Util;
 
 public class NetNode {
@@ -48,6 +49,10 @@ public class NetNode {
 		return ip;
 	}
 	
+	private void trigger(String mex, NetNode man, NetPool field) {
+		Malware.examine(mex, field, man );
+	}
+	
 	public void send(NetPool field, NetNode x, String txt) {
 		if ( Main.debug())
 			System.out.println("[DEBUG] " + this.hostname + " Sending to " + x.hostname + " txt: " + txt);
@@ -57,6 +62,7 @@ public class NetNode {
 	public void recv(NetPool field, String txt, NetNode from) {
 		if ( Main.debug())
 			System.out.println("[DEBUG] " + this.hostname + " recv data from " + from.hostname + " with txt: "  + txt );
+		this.trigger(txt, from, field);
 			
 	}
 	
