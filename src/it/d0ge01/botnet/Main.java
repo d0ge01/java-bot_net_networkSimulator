@@ -12,7 +12,7 @@ public class Main {
 	
 	public static void main(String[] args) throws IOException {
 		// TODO Auto-generated method stub
-		field = new NetPool(100);
+		field = new NetPool(100,"192.168.1");
 		char sc;
 		
 		field.startNetPool(53);
