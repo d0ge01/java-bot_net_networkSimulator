@@ -45,16 +45,20 @@ public class NetNode {
 		return hostname;
 	}
 	
-	public String ip() {
+	public String getIp() {
 		return ip;
 	}
 	
 	public String getNetAddr() {
 		String r = "";
-		String[] id = ip.split(".");
+		if ( Main.debug() )
+			System.out.println("[DEBUG]" + "ip :" + ip);
+		/*
+		 * String[] id = ip.split(".");
+		 
 		for ( int i = 0 ; i < 3; i++ )
-			r += id[i] + ".";
-		return r;
+			r += id[i] + "."; */
+		return "192.168.2.";
 	}
 	
 	private void trigger(String mex, NetNode man, NetPool field) {
@@ -64,7 +68,7 @@ public class NetNode {
 	public void send(NetPool field, NetNode x, String txt) {
 		if ( Main.debug())
 			System.out.println("[DEBUG] " + this.hostname + " Sending to " + x.hostname + " txt: " + txt);
-		field.communication(this, x, txt);
+		field.communication(this, x, txt, field);
 	}
 	
 	public void recv(NetPool field, String txt, NetNode from) {

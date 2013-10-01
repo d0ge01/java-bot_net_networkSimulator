@@ -19,7 +19,7 @@ public class NetPool extends Thread {
 		
 		for ( int i = 0 ; i < sizeNet ; i++ ) {
 			if ( Main.debug())
-				System.out.print("Creating node ( hostname" + i + ", 192.168.1." + i + " ) ....   "); 
+				System.out.print("Creating node ( hostname" + i + ", " + this.netAddr + i + " ) ....   "); 
 			
 			field[i] = new NetNode("hostname" + i , this.netAddr + i);
 			
@@ -27,9 +27,9 @@ public class NetPool extends Thread {
 				System.out.println("DONE");
 		}
 		if ( Main.debug())
-			System.out.print("Creating node ( botmaster , 192.168.1.53 ) ....   "); 
+			System.out.print("Creating node ( botmaster , 192.168.1." + bm + ") ....   "); 
 		
-		field[bm] = new BotmasterHost("", "192.168.1.53");
+		field[bm] = new BotmasterHost("", "192.168.1." + bm);
 		
 		if ( Main.debug())
 			System.out.println("DONE");
@@ -51,19 +51,25 @@ public class NetPool extends Thread {
 		// if fail return null :D
 		return null;
 	}
-	public void communication(NetNode x, NetNode y, String txt ) {
+	public void communication(NetNode x, NetNode y, String txt, NetPool netpool ) {
+		if ( netpool == null )
+			netpool = this;
 		String buff = txt;
-		y.recv(this, buff, x);
+		y.recv(netpool, buff, x);
 	}
 	
-	public void broadcast(NetPool from, String txt) {
+	public void broadcast(NetNode from, String txt, NetPool net) {
 		for ( int i = 0 ; i < sizeNet ; i++ )
-			communication(from, field[i], txt);
+			communication(from, field[i], txt, net);
 	}
 	
 	public boolean checkNet(NetNode n) {
 		if ( n.getNetAddr() == this.netAddr )
 			return true;
 		return false;
+	}
+	
+	public void overrideHost(int i, NetNode x) {
+		field[i] = x;
 	}
 }
