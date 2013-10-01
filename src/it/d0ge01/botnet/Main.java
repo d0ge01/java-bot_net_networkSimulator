@@ -15,7 +15,7 @@ public class Main {
 		field = new NetPool(100);
 		char sc;
 		
-		field.startNetPool();
+		field.startNetPool(53);
 		System.out.println("Console (c) or Apps(p) ?");
 		sc = Util.inputChar();
 		if ( sc == 'c' )

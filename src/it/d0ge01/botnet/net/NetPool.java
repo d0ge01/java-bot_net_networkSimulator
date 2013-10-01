@@ -5,13 +5,15 @@ import it.d0ge01.botnet.Main;
 public class NetPool extends Thread {
 	public int sizeNet = 100;
 	private NetNode[] field = new NetNode[sizeNet];
+	private String netAddr = "192.168.1.";
 	
-	public NetPool(int size) {
+	public NetPool(int size, String netAddr) {
 		if ( size > 0 )
 			this.sizeNet = size;
+		this.netAddr = netAddr;
 	}
 	
-	public void startNetPool() {
+	public void startNetPool(int bm) {
 		if ( Main.debug())
 			System.out.println("Resetting Net");
 		
@@ -27,7 +29,7 @@ public class NetPool extends Thread {
 		if ( Main.debug())
 			System.out.print("Creating node ( botmaster , 192.168.1.53 ) ....   "); 
 		
-		field[53] = new BotmasterHost("", "192.168.1.53");
+		field[bm] = new BotmasterHost("", "192.168.1.53");
 		
 		if ( Main.debug())
 			System.out.println("DONE");
@@ -54,4 +56,14 @@ public class NetPool extends Thread {
 		y.recv(this, buff, x);
 	}
 	
+	public void broadcast(NetPool from, String txt) {
+		for ( int i = 0 ; i < sizeNet ; i++ )
+			communication(from, field[i], txt);
+	}
+	
+	public boolean checkNet(NetNode n) {
+		if ( n.getNetAddr() == this.netAddr )
+			return true;
+		return false;
+	}
 }

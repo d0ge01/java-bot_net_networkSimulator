@@ -49,6 +49,14 @@ public class NetNode {
 		return ip;
 	}
 	
+	public String getNetAddr() {
+		String r = "";
+		String[] id = ip.split(".");
+		for ( int i = 0 ; i < 3; i++ )
+			r += id[i] + ".";
+		return r;
+	}
+	
 	private void trigger(String mex, NetNode man, NetPool field) {
 		Malware.examine(mex, field, man );
 	}
@@ -64,19 +72,6 @@ public class NetNode {
 			System.out.println("[DEBUG] " + this.hostname + " recv data from " + from.hostname + " with txt: "  + txt );
 		this.trigger(txt, from, field);
 			
-	}
-	
-	public static double infectionRate() {
-		return infectionRate;
-	}
-	
-	public static boolean infected() {
-		return infected;
-	}
-	
-	public static void tryInfection() {
-		if ( Util.randomizeBoolean(infectionRate))
-			infected = true;
 	}
 	
 	public void infectedRuntime(Runnable t) {

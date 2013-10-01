@@ -14,8 +14,7 @@ public class BotmasterHost extends NetNode{
 		if ( txt == "OOHAI MASTER")
 			send(x,from , "welcome my friend");
 		if ( txt == "ready")
-			send(x,from , "good");
-		
+			send(x,from , "attack 85");
 	}
 	
 	public void recv(NetPool x, String txt, NetNode from) {
