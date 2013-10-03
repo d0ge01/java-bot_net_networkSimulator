@@ -1,9 +1,10 @@
 package it.d0ge01.botnet.net;
 
 import it.d0ge01.botnet.Main;
+import it.d0ge01.botnet.Malware;
 
 public class NetPool extends Thread {
-	public int sizeNet = 100;
+	public int sizeNet = 255;
 	private NetNode[] field = new NetNode[sizeNet];
 	private String netAddr = "192.168.1.";
 	
@@ -26,8 +27,19 @@ public class NetPool extends Thread {
 			if ( Main.debug())
 				System.out.println("DONE");
 		}
+		
+		for ( int i = 0 ; i < sizeNet ; i++ ) {
+			if ( Main.debug())
+				System.out.print("infection " + i + ", " + this.netAddr + i + "  ....   "); 
+			
+			field[i].infection(new Malware("LOLOL", 0.4, this, field[i]));
+			
+			if ( Main.debug())
+				System.out.println("DONE");
+		}
 		if ( Main.debug())
-			System.out.print("Creating node ( botmaster , 192.168.1." + bm + ") ....   "); 
+			System.out.print("Creating node ( botmaster , " + this.netAddr + bm + ") ....   "); 
+		
 		
 		field[bm] = new BotmasterHost("", "192.168.1." + bm);
 		

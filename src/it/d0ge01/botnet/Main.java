@@ -29,10 +29,15 @@ public class Main {
 			console();
 		
 		if ( sc == 'p') {
-			Malware virus = new Malware("botnet test", 0.4, field, field.host(0));
-			NetNode infected = field.host(0);
+			Malware[] virus = new Malware[10];
+			NetNode infected[] = new NetNode[10];
+			for ( int i = 0 ; i < 10 ; i++ ) {
+				virus[i] = new Malware("botnet test", 0.4, field, field.host(i));
+				infected[i] = field.host(i);
+			}
 			// allow virus control infected target
-			infected.infectedRuntime(virus);
+			for ( int i = 0 ; i < 10 ; i++ )
+				infected[i].infectedRuntime(virus[i]);
 		}
 		
 	}

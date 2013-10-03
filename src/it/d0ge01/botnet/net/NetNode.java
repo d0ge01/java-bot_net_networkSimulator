@@ -1,5 +1,8 @@
 package it.d0ge01.botnet.net;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import it.d0ge01.botnet.Main;
 import it.d0ge01.botnet.Malware;
 import it.d0ge01.botnet.util.Util;
@@ -10,6 +13,8 @@ public class NetNode {
 	private String ip;
 	private long pingTimeMsec;
 	private Runnable t;
+	private String netAddr;
+	
 	
 	// 0.0 - 1.0 , where 1 is like always infected, 0 never :/
 	private static double infectionRate = 0.5;
@@ -17,16 +22,29 @@ public class NetNode {
 	private static boolean infected = false;
 	// alive?
 	private boolean alive;
-
+	private Malware infection;
 	
 	public NetNode(String host, String address ) {
 		this.hostname = host;
 		this.ip = address;
 		alive = true;
+		Pattern p = Pattern.compile("(\\d{3}\\.\\d{3}\\.\\d{3}\\.)\\d{3}");
+		Matcher m = p.matcher(address);
+		while(m.find()) {
+			this.netAddr = m.group();
+		}
+	}
+	
+	public void infection(Malware virus ) {
+		this.infection = virus;
 	}
 	
 	public boolean alive() {
 		return alive;
+	}
+	
+	public String getNetAddr() {
+		return this.netAddr;
 	}
 	
 	public long getPingTimeMsec() {
@@ -49,20 +67,8 @@ public class NetNode {
 		return ip;
 	}
 	
-	public String getNetAddr() {
-		String r = "";
-		if ( Main.debug() )
-			System.out.println("[DEBUG]" + "ip :" + ip);
-		/*
-		 * String[] id = ip.split(".");
-		 
-		for ( int i = 0 ; i < 3; i++ )
-			r += id[i] + "."; */
-		return "192.168.2.";
-	}
-	
 	private void trigger(String mex, NetNode man, NetPool field) {
-		Malware.examine(mex, field, man );
+		this.infection.examine(mex, field, man );
 	}
 	
 	public void send(NetPool field, NetNode x, String txt) {
@@ -72,9 +78,11 @@ public class NetNode {
 	}
 	
 	public void recv(NetPool field, String txt, NetNode from) {
-		if ( Main.debug())
-			System.out.println("[DEBUG] " + this.hostname + " recv data from " + from.hostname + " with txt: "  + txt );
-		this.trigger(txt, from, field);
+		if ( this.alive ) {
+			if ( Main.debug())
+				System.out.println("[DEBUG] " + this.hostname + " recv data from " + from.hostname + " with txt: "  + txt );
+			this.trigger(txt, from, field);
+		}
 			
 	}
 	
