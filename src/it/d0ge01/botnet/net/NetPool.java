@@ -28,15 +28,6 @@ public class NetPool extends Thread {
 				System.out.println("DONE");
 		}
 		
-		for ( int i = 0 ; i < sizeNet ; i++ ) {
-			if ( Main.debug())
-				System.out.print("infection " + i + ", " + this.netAddr + i + "  ....   "); 
-			
-			field[i].infection(new Malware("LOLOL", 0.4, this, field[i]));
-			
-			if ( Main.debug())
-				System.out.println("DONE");
-		}
 		if ( Main.debug())
 			System.out.print("Creating node ( botmaster , " + this.netAddr + bm + ") ....   "); 
 		

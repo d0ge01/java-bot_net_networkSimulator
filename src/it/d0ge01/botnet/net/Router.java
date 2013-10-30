@@ -2,15 +2,15 @@ package it.d0ge01.botnet.net;
 
 import it.d0ge01.botnet.Main;
 
-public class Router extends NetNode {
+public class Router {
 	private NetPool netA;
 	private NetPool netB;
+	private String hostname;
 	
-	public Router(String host, String address) {
-		super(host, address);
+	public Router(String host) {
+		this.hostname = host;
 		// TODO Auto-generated constructor stub
 	}
-
 
 	public void setRouter(NetPool x, NetPool y) {
 		/*
