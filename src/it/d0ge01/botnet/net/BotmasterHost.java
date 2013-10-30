@@ -4,16 +4,16 @@ import it.d0ge01.botnet.Main;
 
 public class BotmasterHost extends NetNode{
 
-	public BotmasterHost(String host, String address) {
+	public BotmasterHost(String address) {
 		super("botmaster", address);
 		// TODO Auto-generated constructor stub
 	}
 	
 	public void botmasterRuntime(NetPool x, String txt, NetNode from) {
 		// public void send(NetPool field, NetNode x, String txt) {
-		if ( txt == "OOHAI MASTER")
+		if ( txt.equals("OOHAI MASTER"))
 			send(x,from , "welcome my friend");
-		if ( txt == "ready")
+		if ( txt.equals("ready"))
 			send(x,from , "attack");
 	}
 	

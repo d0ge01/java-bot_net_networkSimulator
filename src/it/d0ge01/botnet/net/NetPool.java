@@ -32,7 +32,7 @@ public class NetPool extends Thread {
 			System.out.print("Creating node ( botmaster , " + this.netAddr + bm + ") ....   "); 
 		
 		
-		field[bm] = new BotmasterHost("", "192.168.1." + bm);
+		field[bm] = new BotmasterHost("192.168.1." + bm);
 		
 		if ( Main.debug())
 			System.out.println("DONE");

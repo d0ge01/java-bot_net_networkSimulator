@@ -81,7 +81,7 @@ public class NetNode {
 		if ( this.alive ) {
 			if ( Main.debug())
 				System.out.println("[DEBUG] " + this.hostname + " recv data from " + from.hostname + " with txt: "  + txt );
-			// this.trigger(txt, from, field);
+			this.trigger(txt, from, field);
 		}
 			
 	}

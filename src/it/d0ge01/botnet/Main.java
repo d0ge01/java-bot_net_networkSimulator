@@ -27,12 +27,10 @@ public class Main {
 	
 		System.out.println("Console (c) or Apps(p) ?");
 		sc = Util.inputChar();
-		if ( sc == 'c' )
+		if ( sc == 'c' )			
 			console();
 		
 		if ( sc == 'p') {
-			Malware[] virus = new Malware[10];
-			NetNode infected[] = new NetNode[10];
 			for ( int i = 0 ; i < 10 ; i++ ) {
 				internet.get(0).host(i).infectedRuntime(new Malware("botnet test", 0.4, internet.get(0), internet.get(0).host(i)));
 			}
@@ -40,7 +38,8 @@ public class Main {
 		
 	}
 	
-	public static boolean debug() {
+	public static boolean debug() {			Malware[] virus = new Malware[10];
+	NetNode infected[] = new NetNode[10];
 		return DEBUG;
 	}
 	
@@ -50,14 +49,21 @@ public class Main {
 		int v2 = 0;
 		while ( true ) {
 			System.out.println("botnet>");
-			System.out.println("from?");
-			v1 = Util.inputInt();
-			System.out.println("to?");
-			v2 = Util.inputInt();
-			System.out.println("Txt?");
 			buff = Util.inputString();
-			internet.get(0).host(v1).send(internet.get(0), internet.get(0).host(v2), buff);
-			System.out.println("Done...");
+			if ( buff.equals("infect")) {
+				System.out.print("host? ");
+				v1 = Util.inputInt();
+				internet.get(0).host(v1).infection(new Malware("botnet test", 0.4, internet.get(0), internet.get(0).host(v1)));
+			}else {
+				System.out.println("from?");
+				v1 = Util.inputInt();
+				System.out.println("to?");
+				v2 = Util.inputInt();
+				System.out.println("Txt?");
+				buff = Util.inputString();
+				internet.get(0).host(v1).send(internet.get(0), internet.get(0).host(v2), buff);
+				System.out.println("Done...");
+			}
 			
 		}
 	}
