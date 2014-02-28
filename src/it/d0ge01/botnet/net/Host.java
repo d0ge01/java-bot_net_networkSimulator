@@ -4,14 +4,17 @@ import java.util.Vector;
 import it.d0ge01.botnet.protocol.Packet;
 
 public class Host extends NetNode implements Runnable{
-	public Host(String hostname, String netAddr, NetPool net) {
+  public Host(String hostname, String netAddr, NetPool net) {
 		super(hostname, netAddr, net);
 	}
 
 	@Override
 	public void run() {
 		// TODO Auto-generated method stub
-		m.runtime();
+    if ( m != null )
+		  m.runMalware();
+    else
+      System.out.println("[DEBUG] NO MALWARE HERE " + this.hostname);
 	}
 
 	@Override
@@ -28,5 +31,5 @@ public class Host extends NetNode implements Runnable{
 				}
 			}
 	}
-	
+
 }

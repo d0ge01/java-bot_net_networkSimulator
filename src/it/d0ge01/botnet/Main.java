@@ -14,13 +14,13 @@ public class Main {
 		NetPool lan1 = new NetPool();
 		NetPool lan2 = new NetPool();
 		Vector<Host> vHost = new Vector<Host>();
-		
+
 		for ( int i = 0; i < 10 ; i++ )
 			vHost.add(new Host("x1", "192.168.1." + i+4, lan1));
-		
+
 		for ( int i = 0 ; i < 10 ; i++ )
-			vHost.get(i).infect(MalwareProvider.get(vHost.get(i)));
-		
+			vHost.get(i).install(MalwareProvider.get(vHost.get(i)));
+
 		for ( int i = 0 ; i < 10 ; i++ )
 			vHost.get(i).run();
 	}
